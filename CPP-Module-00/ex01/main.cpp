@@ -24,5 +24,4 @@ int main(void)
             phonebook.show_commands();
         }
     }
-    
 }

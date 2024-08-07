@@ -5,7 +5,7 @@ SRCS		= main.cpp PhoneBook.cpp Contact.cpp
 INC			= PhoneBook.hpp Contact.hpp
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address #-pedantic
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -pedantic
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
