@@ -4,8 +4,8 @@ NAME		= zombie
 SRCS		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 INC			= Zombie.hpp
 
-CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -pedantic
+CC			= g++
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic #-fsanitize=address
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
