@@ -9,9 +9,9 @@
 class   PhoneBook
 {
     private:
-            Contact contacts[8];
-            int     n_contact;
-			int		full;
+            Contact _contacts[8];
+            int     _n_contact;
+			int		_full;
 
     public:
             PhoneBook();

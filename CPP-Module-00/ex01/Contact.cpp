@@ -44,42 +44,42 @@ std::string	add_number(std::string field)
 
 void    Contact::add_info()
 {
-    first_name = add_field("First Name");
-	last_name = add_field("Last Name");
-	nickname = add_field("Nickame");
-	phone_number = add_number("Phone Number");
-	darkest_secret = add_field("Darkest Secret");
+    _first_name = add_field("First Name");
+	_last_name = add_field("Last Name");
+	_nickname = add_field("Nickame");
+	_phone_number = add_number("Phone Number");
+	_darkest_secret = add_field("Darkest Secret");
 }
 
 void	Contact::display_short(int index)
 {
-	if(!this->first_name.length())
+	if(!_first_name.length())
 		return;
 	std::cout << std::left << "|" << std::setw(10) << index+1;
-	if (this->first_name.length() > 10)
-		std::cout << std::left << "|" << this->first_name.substr(0, 9) << ".";
+	if (_first_name.length() > 10)
+		std::cout << std::left << "|" << _first_name.substr(0, 9) << ".";
 	else
-		std::cout << std::left << "|" << std::setw(10) << this->first_name;
-	if (this->last_name.length() > 10)
-		std::cout << std::left << "|" << this->last_name.substr(0, 9) << ".";
+		std::cout << std::left << "|" << std::setw(10) << _first_name;
+	if (_last_name.length() > 10)
+		std::cout << std::left << "|" << _last_name.substr(0, 9) << ".";
 	else
-		std::cout << std::left << "|" << std::setw(10) << this->last_name;
-	if (this->nickname.length() > 10)
-		std::cout << std::left << "|" << this->nickname.substr(0, 9) << ".|" << std::endl;
+		std::cout << std::left << "|" << std::setw(10) << _last_name;
+	if (_nickname.length() > 10)
+		std::cout << std::left << "|" << _nickname.substr(0, 9) << ".|" << std::endl;
 	else
-		std::cout << std::left << "|" << std::setw(10) << this->nickname << "|" << std::endl;
+		std::cout << std::left << "|" << std::setw(10) << _nickname << "|" << std::endl;
 }
 
 void	Contact::display_full()
 {
-	if(!this->first_name.length())
+	if(!_first_name.length())
 	{
 		std::cout << "! Contact is not stored." << std::endl;
 		return;
 	}
-	std::cout << "* First Name: " << this->first_name << std::endl;
-	std::cout << "* Last Name: " << this->last_name << std::endl;
-	std::cout << "* Nickname: " << this->nickname << std::endl;
-	std::cout << "* Phone Number: " << this->phone_number << std::endl;
-	std::cout << "* Darkest Secret: " << this->darkest_secret << std::endl;
+	std::cout << "* First Name: " << _first_name << std::endl;
+	std::cout << "* Last Name: " << _last_name << std::endl;
+	std::cout << "* Nickname: " << _nickname << std::endl;
+	std::cout << "* Phone Number: " << _phone_number << std::endl;
+	std::cout << "* Darkest Secret: " << _darkest_secret << std::endl;
 }
