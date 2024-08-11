@@ -6,7 +6,7 @@
 class Weapon
 {
 	private:
-		std::string	type;
+		std::string	_type;
 
 	public:
 			Weapon(std::string type);
@@ -16,4 +16,4 @@ class Weapon
 			const std::string	&getType() const;
 };
 
-#endif;
+#endif
