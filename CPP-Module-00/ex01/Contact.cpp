@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/17 19:32:00 by ade-tole          #+#    #+#             */
+/*   Updated: 2024/08/17 19:36:56 by ade-tole         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 Contact::Contact()
@@ -44,7 +56,7 @@ std::string	add_number(std::string field)
 
 void    Contact::add_info()
 {
-    _first_name = add_field("First Name");
+	_first_name = add_field("First Name");
 	_last_name = add_field("Last Name");
 	_nickname = add_field("Nickame");
 	_phone_number = add_number("Phone Number");
