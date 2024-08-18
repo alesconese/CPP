@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 		return ((std::cout << "! Wrong parameters" << std::endl), 1);
 
 	std::ifstream	ifs;
-	ifs.open(argv[1], std::ifstream::in);
+	ifs.open(argv[1]);
 	if (ifs.fail())
 		return ((std::cout << "! Unable to open specified file" << std::endl), 1);
 	
