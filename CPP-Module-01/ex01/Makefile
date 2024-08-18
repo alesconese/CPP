@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/17 20:11:14 by ade-tole          #+#    #+#              #
+#    Updated: 2024/08/17 20:11:20 by ade-tole         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME		= zombie_horde
 
@@ -5,7 +16,7 @@ SRCS		= main.cpp Zombie.cpp zombieHorde.cpp
 INC			= Zombie.hpp
 
 CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic #-fsanitize=address 
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)

@@ -11,13 +11,13 @@
 # **************************************************************************** #
 
 
-NAME		= violence
+NAME		= sed
 
-SRCS		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
-INC			= Weapon.hpp HumanA.hpp HumanB.hpp
+SRCS		= main.cpp 
+INC			= 
 
 CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leakgittttt/CPP-Module-01/ex03/Makefile
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)

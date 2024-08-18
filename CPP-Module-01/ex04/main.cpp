@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 20:12:15 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/08/17 20:12:39 by ade-tole         ###   ########.fr       */
+/*   Created: 2024/08/17 20:23:09 by ade-tole          #+#    #+#             */
+/*   Updated: 2024/08/17 20:23:11 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include <string>
+#include <iostream>
+#include <fstream>
 
-# include <string>
-# include <iostream>
-
-class Zombie
+int main(int argc, char **argv)
 {
-	private:
-		std::string	_name;
-	
-	public:
-		Zombie();
-		Zombie(std::string name);
-		~Zombie();
-		
-		void	announce();
-		void	setName(std::string name);
-};
+	if (argc != 4)
+		return ((std::cout << "! Wrong parameters" << std::endl), 1);
 
-#endif
+	std::ifstream	ifs;
+	ifs.open(argv[1], std::ifstream::in);
+	if (ifs.fail())
+		return ((std::cout << "! Unable to open specified file" << std::endl), 1);
+	
+	return (0);
+}
