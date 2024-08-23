@@ -14,10 +14,9 @@
 NAME		= sed
 
 SRCS		= main.cpp 
-INC			= 
 
 CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic #-fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
