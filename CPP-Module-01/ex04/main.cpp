@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 std::string	ft_replace(std::string line, std::string old_str, std::string new_str)
 {
@@ -37,7 +38,7 @@ int main(int argc, char **argv)
 	ifs.open(argv[1]);
 	if (ifs.fail())
 		return ((std::cerr << "! Error: Unable to open file <" << argv[1] << ">. " << std::strerror(errno) << std::endl), 1);
-	ofs.open(std::string(argv[1]).append(".replace"));
+	ofs.open(((std::string(argv[1])).append(".replace")).c_str());
 	if (ofs.fail())
 		return ((std::cerr << "! Error: Unable to create new file. " << std::strerror(errno) << std::endl), 1);
 	while(std::getline(ifs, line))
