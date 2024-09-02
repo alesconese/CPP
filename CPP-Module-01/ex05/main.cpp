@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 21:07:07 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/09/02 21:07:09 by ade-tole         ###   ########.fr       */
+/*   Created: 2024/09/02 21:05:57 by ade-tole          #+#    #+#             */
+/*   Updated: 2024/09/02 21:05:59 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#include "Harl.hpp"
 
-# include <string>
-# include <iostream>
-
-class	Harl
+int main()
 {
-	private:
-			void	debug();
-			void	info();
-			void	warning();
-			void	error();
-	
-	public:
-			Harl();
-			~Harl();
+    Harl    harl;
 
-			void	complain(std::string level);
-};
+    harl.complain("hello");
+    harl.complain("debug");
+    harl.complain("info");
+    harl.complain("warning");
+    harl.complain("error");
 
-#endif
+    return 0;
+}
