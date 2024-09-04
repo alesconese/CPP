@@ -44,14 +44,11 @@ void    Harl::complain(std::string level)
 {
 	std::string	level_arr[4] = {"debug", "info", "warning", "error"};
 	void	(Harl::*f_arr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	void	(Harl::*f_ptr)(void) = NULL;;
 
 	for (int i=0; i < 4; i++)
 	{
 		if (level_arr[i] == level)
-			f_ptr = f_arr[i];
+			return ((this->*f_arr[i])());
 	}
-	if (!f_ptr)
-		return (void)(std::cerr << "! Invalid complain level <" << level << ">. Available options: <debug>,<info>,<warning>,<error>\n");
-	(this->*f_ptr)();
+	std::cerr << "! Invalid complain level <" << level << ">. Available options: <debug>,<info>,<warning>,<error>\n";
 }
