@@ -12,14 +12,6 @@
 
 #include "Contact.hpp"
 
-Contact::Contact()
-{
-}
-
-Contact::~Contact()
-{
-}
-
 std::string	add_field(std::string field)
 {
 	std::string	buff;
@@ -54,6 +46,14 @@ std::string	add_number(std::string field)
 	return (buff);
 }
 
+Contact::Contact()
+{
+}
+
+Contact::~Contact()
+{
+}
+
 void    Contact::add_info()
 {
 	_first_name = add_field("First Name");
@@ -67,19 +67,19 @@ void	Contact::display_short(int index)
 {
 	if(!_first_name.length())
 		return;
-	std::cout << std::left << "|" << std::setw(10) << index+1;
+	std::cout << std::right << "|" << std::setw(10) << index+1;
 	if (_first_name.length() > 10)
-		std::cout << std::left << "|" << _first_name.substr(0, 9) << ".";
+		std::cout << std::right << "|" << _first_name.substr(0, 9) << ".";
 	else
-		std::cout << std::left << "|" << std::setw(10) << _first_name;
+		std::cout << std::right << "|" << std::setw(10) << _first_name;
 	if (_last_name.length() > 10)
-		std::cout << std::left << "|" << _last_name.substr(0, 9) << ".";
+		std::cout << std::right << "|" << _last_name.substr(0, 9) << ".";
 	else
-		std::cout << std::left << "|" << std::setw(10) << _last_name;
+		std::cout << std::right << "|" << std::setw(10) << _last_name;
 	if (_nickname.length() > 10)
-		std::cout << std::left << "|" << _nickname.substr(0, 9) << ".|" << std::endl;
+		std::cout << std::right << "|" << _nickname.substr(0, 9) << ".|" << std::endl;
 	else
-		std::cout << std::left << "|" << std::setw(10) << _nickname << "|" << std::endl;
+		std::cout << std::right << "|" << std::setw(10) << _nickname << "|" << std::endl;
 }
 
 void	Contact::display_full()

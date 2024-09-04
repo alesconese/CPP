@@ -51,10 +51,10 @@ void	PhoneBook::search_contact()
 		std::cout << "! PhoneBook empty. Search command unavailable." << std::endl;
 		return;
 	}
-	std::cout << std::left << "|" << std::setw(10) << "Index";
-	std::cout << std::left << "|" << std::setw(10) << "First Name";
-	std::cout << std::left << "|" << std::setw(10) << "Last Name";
-	std::cout << std::left << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+	std::cout << std::right << "|" << std::setw(10) << "Index";
+	std::cout << std::right << "|" << std::setw(10) << "First Name";
+	std::cout << std::right << "|" << std::setw(10) << "Last Name";
+	std::cout << std::right << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
 	for (int i = 0; i < 8; i++)
 		_contacts[i].display_short(i);
 	std::cout << "* Enter contact index to display full information, or 0 to exit." << std::endl;
