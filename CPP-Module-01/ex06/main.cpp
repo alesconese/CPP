@@ -12,15 +12,14 @@
 
 #include "Harl.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
     Harl    harl;
 
-    harl.complain("HELLO");
-    harl.complain("DEBUG");
-    harl.complain("INFO");
-    harl.complain("WARNING");
-    harl.complain("ERROR");
+    if (argc == 2)
+        harl.complain(argv[1]);
+    else
+        std::cout << "[ Probably complaining about insignificcant problems ]" << std::endl;
 
     return 0;
 }

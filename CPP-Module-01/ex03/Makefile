@@ -17,7 +17,7 @@ SRCS		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 INC			= Weapon.hpp HumanA.hpp HumanB.hpp
 
 CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic #-fsanitize=leak
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
