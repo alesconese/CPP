@@ -17,6 +17,6 @@ int Account::_nbAccounts = 0;
 
 Account::Account(int initial_deposit): _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
-    std::cout << "index:"
+    std::cout << "index:" ;
 }
 
