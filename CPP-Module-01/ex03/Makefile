@@ -16,8 +16,8 @@ NAME		= violence
 SRCS		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 INC			= Weapon.hpp HumanA.hpp HumanB.hpp
 
-CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
+CC			= c++
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)

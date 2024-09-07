@@ -15,8 +15,8 @@ NAME		= harl
 SRCS		= main.cpp Harl.cpp
 INC			= Harl.hpp
 
-CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
+CC			= c++
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)

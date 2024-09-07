@@ -15,8 +15,8 @@ NAME		= harlFilter
 SRCS		= main.cpp Harl.cpp
 INC			= Harl.hpp
 
-CC			= g++
-CPPFLAGS	= -Wall -Wextra -Werror -Wimplicit-fallthrough=0 -std=c++98 -g -pedantic error-fsanitize=leak
+CC			= c++
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic #-Wimplicit-fallthrough=0
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
