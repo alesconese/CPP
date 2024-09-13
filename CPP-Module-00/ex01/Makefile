@@ -15,7 +15,7 @@ NAME		= phonebook
 SRCS		= main.cpp PhoneBook.cpp Contact.cpp
 INC			= PhoneBook.hpp Contact.hpp
 
-CC			= g++
+CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 

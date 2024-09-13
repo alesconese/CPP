@@ -15,7 +15,7 @@ NAME		= bank
 SRCS		= tests.cpp Account.cpp
 INC			= Account.hpp
 
-CC			= g++
+CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 
