@@ -22,6 +22,16 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
+Fixed::Fixed(int const int_v): _value(int_v << _fractional)
+{
+	std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(float const fp_v): _value(roundf(fp_v * (1 << _fractional)))
+{
+	std::cout << "Float constructor called" << std::endl;
+}
+
 Fixed::Fixed(Fixed const &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
@@ -45,4 +55,20 @@ void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
 	_value = raw;
+}
+
+float	Fixed::toFloat(void) const
+{
+	return ((float)_value / (float)(1 << _fractional));
+}
+
+int		Fixed::toInt(void) const
+{
+	return (_value >> _fractional);
+}
+
+std::ostream	&operator<<(std::ostream &os, Fixed const &src)
+{
+	os << src.toFloat();
+	return os;
 }
