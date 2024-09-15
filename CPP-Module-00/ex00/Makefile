@@ -13,7 +13,7 @@
 NAME		= megaphone
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
 
 SRCS		= megaphone.cpp
 OBJS		= $(SRCS:.cpp=.o)
