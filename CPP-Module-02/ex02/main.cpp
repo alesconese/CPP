@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 19:21:05 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/09/06 19:21:07 by ade-tole         ###   ########.fr       */
+/*   Created: 2024/09/12 18:25:12 by ade-tole          #+#    #+#             */
+/*   Updated: 2024/09/12 18:25:14 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#include "Fixed.hpp"
+#include <iostream>
 
-# include <iostream>
-
-class Fixed
+int	main()
 {
-	private:
-			int					_value;
-			static const int	_fractional = 8;
-	
-	public:
-    		Fixed();
-    		~Fixed();
-			Fixed(Fixed const &src);
-			Fixed &operator=(Fixed const &src);
+	Fixed		a( 3.1301f );
+	Fixed const	b( 3.1099f );
 
-			int		getRawBits(void) const;
-			void	setRawBits(int const raw);
-};
+	if (a > b)
+		std::cout << "a is bigger than b";
+	else if (b > a)
+		std::cout << "b is bigger than a";
+	else
+		std::cout << "a is equal to b";
+	std::cout << std:: endl;
 
-#endif
+	return 0;
+}

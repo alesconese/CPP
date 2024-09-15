@@ -13,7 +13,9 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include <string>
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
@@ -24,11 +26,23 @@ class Fixed
 	public:
     		Fixed();
     		~Fixed();
+			Fixed(int const int_v);
+			Fixed(float const fp_v);
 			Fixed(Fixed const &src);
-			Fixed &operator=(Fixed const &src);
+			Fixed &operator=(Fixed const &other);
+			bool operator>(Fixed const &other) const;
+			bool operator<(Fixed const &other) const;
+			bool operator>=(Fixed const &other) const;
+			bool operator<=(Fixed const &other) const;
+			bool operator==(Fixed const &other) const;
+			bool operator!=(Fixed const &other) const;
 
 			int		getRawBits(void) const;
 			void	setRawBits(int const raw);
+			float	toFloat(void) const;
+			int		toInt(void) const;
 };
+
+std::ostream	&operator<<(std::ostream &os, Fixed const &src);
 
 #endif
