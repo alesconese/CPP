@@ -10,36 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main()
 {
 	{
 		std::cout << "* * * * * TEST 1 * * * * *" << std::endl;
+		ScavTrap s1("Scavvy");
 		ClapTrap c1("Clappy");
-		ClapTrap c2("Trappy");
 
-		for (int i = 0; i < 10; i++)
-		{
-			c1.attack("Trappy");
-			c2.takeDamage(0);
-		}
-		c1.attack("Trappy");
-		c2.beRapaired(10);
+		s1.attack("Trappy");
+		c1.takeDamage(20);
+		s1.beRapaired(100);
+		s1.guardGate();
 	}
-	
+
 	{
 		std::cout << std::endl << "* * * * * TEST 2 * * * * *" << std::endl;
 		ClapTrap c1("Clappy");
-		ClapTrap c2("Trappy");
+		ScavTrap s1("Scavvy");
+		ScavTrap s2("Trappy");
 		
-		c1.setAttackDamage(5);
-		c1.attack(c2);
-		c2.beRapaired(10);
-		c1.attack(c2);
-		c1.attack(c2);
-		c2.attack(c1);
-		c2.beRapaired(10);
+		c1.setAttackDamage(50);
+		c1.attack(s1);
+		s1.beRapaired(100);
+		s1.attack(c1);
+		s1.attack(s2);
 	}
 	return 0;
 }
