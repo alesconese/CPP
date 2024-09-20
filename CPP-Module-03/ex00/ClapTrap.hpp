@@ -32,8 +32,16 @@ class ClapTrap
 			ClapTrap	&operator=(ClapTrap const &src);
 
 			void	attack(const std::string &target);
+			void	attack(ClapTrap &target);
 			void	takeDamage(unsigned int amount);
 			void	beRapaired(unsigned int amount);
+
+			int		getHitPoints() const;
+			int		getEnergyPoints() const;
+			int		getAttackDamage() const;
+			void	setHitPoints(unsigned int hitPoints);
+			void	setEnergyPoints(unsigned int energyPoints);
+			void	setAttackDamage(unsigned int attackDamage);
 };
 
 #endif
