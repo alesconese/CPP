@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 19:13:25 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/09/26 19:13:26 by ade-tole         ###   ########.fr       */
+/*   Created: 2024/09/28 19:20:19 by ade-tole          #+#    #+#             */
+/*   Updated: 2024/09/28 19:20:21 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Brain.hpp"
 
-Cat::Cat()
+Brain::Brain()
 {
-	_type = "Cat";
-	std::cout << "* Cat default constructor called" << std::endl;
+	std::cout << "* Brain default constructor called" << std::endl;
 }
 
-Cat::~Cat()
+Brain::~Brain()
 {
-	std::cout << "* Cat default destrutor called" << std::endl;
+	std::cout << "* Brain default destructor called" << std::endl;
 }
 
-Cat::Cat(Cat const &src)
+Brain::Brain(Brain const &src)
 {
 	*this = src;
-	std::cout << "* Cat copy constructor called" << std::endl;
+	std::cout << "* Brain copy operator called" << std::endl;
 }
 
-Cat	&Cat::operator=(Cat const &src)
+Brain &Brain::operator=(Brain const &src)
 {
 	if (this != &src)
-		_type = src._type;
-	std::cout << "* Cat copy assignment operator called" << std::endl;
+		for (int i = 0; i < 100; i++)
+			_ideas[i] = src._ideas[i];
+	std::cout << "* Brain copy assignment operator called" << std::endl;
 	return *this;
-}
-
-void	Cat::makeSound() const
-{
-	std::cout << "* Meowww... *" << std::endl;
 }

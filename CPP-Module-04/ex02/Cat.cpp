@@ -16,10 +16,12 @@ Cat::Cat()
 {
 	_type = "Cat";
 	std::cout << "* Cat default constructor called" << std::endl;
+	_brain = new Brain();
 }
 
 Cat::~Cat()
 {
+	delete _brain;
 	std::cout << "* Cat default destrutor called" << std::endl;
 }
 

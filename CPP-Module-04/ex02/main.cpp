@@ -10,49 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
+#include "Brain.hpp"
 
 int	main()
 {
-	{
-		std::cout << "* * * * * TEST 1: Correct Inheritance * * * * *" << std::endl;
+	std::cout << "* * * * * TEST 1: Abstract Class * * * * *" << std::endl;
+	//AAnimal is an abstract class so it cannot be instantiated.
+	//Program will not compile if uncommented.
+	//AAnimal *a1 = new AAnimal();
+	AAnimal *c1 = new Cat();
+	AAnimal *d1 = new Dog();
 
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+	//a1->makeSound();
+	c1->makeSound();
+	d1->makeSound();
 
-		std::cout << "* " << meta->getType() << ": ";
-		meta->makeSound();
-		std::cout << "* " << j->getType() << ": ";
-		j->makeSound();
-		std::cout << "* " << i->getType() << ": ";
-		i->makeSound();
-		
-		delete i;
-		delete j;
-		delete meta;
-	}
-	
-	{
-		std::cout << std::endl << "* * * * * TEST 2: Wrong Inheritance * * * * *" << std::endl;
-
-		const WrongAnimal* wmeta = new WrongAnimal();
-		const WrongAnimal* wi = new WrongCat();
-		const WrongCat* wj = new WrongCat();
-
-		std::cout << "* " << wmeta->getType() << ": ";
-		wmeta->makeSound();
-		std::cout << "* " << wi->getType() << ": ";
-		wi->makeSound();
-		std::cout << "* " << wj->getType() << ": ";
-		wj->makeSound();
-
-		delete wj;
-		delete wi;
-		delete wmeta;
-	}
+	//delete a1;
+	delete c1;
+	delete d1;
 }

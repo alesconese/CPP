@@ -10,43 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal(): _type("Unknown Animal")
+AAnimal::AAnimal(): _type("Unknown AAnimal")
 {
-	std::cout << "* Animal default constructor called" << std::endl;
+	std::cout << "* AAnimal default constructor called" << std::endl;
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
-	std::cout << "* Animal default destrutor called" << std::endl;
+	std::cout << "* AAnimal default destrutor called" << std::endl;
 }
 
-Animal::Animal(Animal const &src)
+AAnimal::AAnimal(AAnimal const &src)
 {
 	*this = src;
-	std::cout << "* Animal copy constructor called" << std::endl;
+	std::cout << "* AAnimal copy constructor called" << std::endl;
 }
 
-Animal	&Animal::operator=(Animal const &src)
+AAnimal	&AAnimal::operator=(AAnimal const &src)
 {
 	if (this != &src)
 		_type = src._type;
-	std::cout << "* Animal copy assignment operator called" << std::endl;
+	std::cout << "* AAnimal copy assignment operator called" << std::endl;
 	return *this;
 }
 
-std::string	Animal::getType() const
+std::string	AAnimal::getType() const
 {
 	return _type;
 }
 
-void	Animal::setType(std::string type)
+void	AAnimal::setType(std::string type)
 {
 	_type = type;
 }
 
-void	Animal::makeSound() const
+void	AAnimal::makeSound() const
 {
 	std::cout << "* Undetermined sound... *" << std::endl;
 }
