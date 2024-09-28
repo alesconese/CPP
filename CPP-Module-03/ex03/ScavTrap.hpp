@@ -17,7 +17,7 @@
 # include <string>
 # include <iostream>
 
-class ScavTrap : virtual public ClapTrap
+class ScavTrap : public ClapTrap
 {
 	public:
 			ScavTrap();

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fragtrap
+NAME		= diamondtrap
 
 SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 INC			= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
