@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 19:20:07 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/11/07 19:20:08 by ade-tole         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 int	main()
 {
@@ -19,7 +7,7 @@ int	main()
 		std::cout << "* * * * * TEST 1: Form grade too high * * * * *" << std::endl;
 		try
 		{
-			Form f1("1A", 0, 1);
+			AForm f1("1A", 0, 1);
 		}
 		catch (std::exception &e)
 		{
@@ -27,7 +15,7 @@ int	main()
 		}
 		try
 		{
-			Form f2("2A", 1, 0);
+			AForm f2("2A", 1, 0);
 		}
 		catch (std::exception &e)
 		{
@@ -38,7 +26,7 @@ int	main()
 		std::cout << "\n* * * * * TEST 2: Form grade too low * * * * *" << std::endl;
 		try
 		{
-			Form f1("1A", 151, 150);
+			AForm f1("1A", 151, 150);
 		}
 		catch (std::exception &e)
 		{
@@ -46,7 +34,7 @@ int	main()
 		}
 		try
 		{
-			Form f2("2A", 150, 151);
+			AForm f2("2A", 150, 151);
 		}
 		catch (std::exception &e)
 		{

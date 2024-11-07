@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 19:18:51 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/11/07 19:18:55 by ade-tole         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name("Undefined"), _grade(150)
@@ -38,7 +26,6 @@ Bureaucrat::Bureaucrat(Bureaucrat const &src): _name(src._name)
 	std::cout << "* Bureaucrat copy constructor called" << std::endl;
 	*this = src;
 }
-
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src)
 {
 	std::cout << "* Bureaucrat copy assignment constructor called" << std::endl;
@@ -71,6 +58,25 @@ void	Bureaucrat::decrementGrade()
 		throw Bureaucrat::GradeTooLowException();
 	else
 		_grade++;
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	if (form.getSigned())
+	{
+		std::cout << "(!) Bureaucrat " << _name << " couldn't sign Form " << form.getName() << " because it's already signed.\n";
+		return;
+	}
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "(!) Bureaucrat " << _name << " couldn't sign Form " << form.getName() << " because ";
+		std::cout << e.what() << '\n';
+	}
+	
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()

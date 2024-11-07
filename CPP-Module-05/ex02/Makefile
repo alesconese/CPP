@@ -6,14 +6,14 @@
 #    By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 18:10:28 by ade-tole          #+#    #+#              #
-#    Updated: 2024/11/07 19:20:25 by ade-tole         ###   ########.fr        #
+#    Updated: 2024/11/07 19:21:31 by ade-tole         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= form
 
-SRCS		= main.cpp Bureaucrat.cpp Form.cpp
-INC			= Bureaucrat.hpp Form.hpp
+SRCS		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+INC			= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
