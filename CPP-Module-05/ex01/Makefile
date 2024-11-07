@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= bureaucrat
+NAME		= form
 
 SRCS		= main.cpp Bureaucrat.cpp Form.cpp
 INC			= Bureaucrat.hpp Form.hpp

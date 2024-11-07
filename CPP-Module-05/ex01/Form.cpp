@@ -7,11 +7,11 @@ Form::Form() : _name("Unnamed Form"), _signed(false), _sign_grade(150), _exec_gr
 
 Form::Form(std::string name, unsigned int sign_grade, unsigned int exec_grade) : _name(name), _signed(false), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
+	std::cout << "* Form constructor called: " << _name << std::endl;
 	if (sign_grade < 1 || exec_grade < 1)
 		throw Form::GradeTooHighException();
 	else if (sign_grade > 150 || exec_grade > 150)
 		throw Form::GradeTooLowException();
-	std::cout << "* Form constructor called: " << _name << std::endl;
 }
 
 Form::~Form()
@@ -51,12 +51,12 @@ void	Form::beSigned(Bureaucrat const &bureaucrat)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return ("! ERROR: Grade too high");
+	return ("(!) ERROR: Grade too high for this form");
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return ("! ERROR: Grade too low");
+	return ("(!) ERROR: Grade too low for this form");
 }
 
 std::ostream	&operator<<(std::ostream &os, Form const &src)
