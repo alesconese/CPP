@@ -36,7 +36,7 @@ class Form
 			std::string		getName() const;
 			bool			getSigned() const;
 			unsigned int	getSignGrade() const;
-			unsigned int	getExcGrade() const;
+			unsigned int	getExecGrade() const;
 
 			void	beSigned(Bureaucrat const &bureaucrat);
 

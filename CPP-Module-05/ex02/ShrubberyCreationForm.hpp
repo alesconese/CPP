@@ -14,9 +14,10 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include <string>
+# include <fstream>
+# include <cstring>
 # include "Bureaucrat.hpp"
-
-class Bureaucrat;
+# include "AForm.hpp"
 
 class ShrubberyCreationForm : public AForm
 {
@@ -28,7 +29,9 @@ class ShrubberyCreationForm : public AForm
 			ShrubberyCreationForm(std::string target);
 			~ShrubberyCreationForm();
 			ShrubberyCreationForm(ShrubberyCreationForm const &src);
+			ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &src);
 
+			void	execute(Bureaucrat const &executor) const;
 };
 
 #endif

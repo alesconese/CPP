@@ -51,7 +51,7 @@ bool	Form::getSigned() const { return _signed; }
 
 unsigned int	Form::getSignGrade() const { return _sign_grade; }
 
-unsigned int	Form::getExcGrade() const { return _exec_grade; }
+unsigned int	Form::getExecGrade() const { return _exec_grade; }
 
 void	Form::beSigned(Bureaucrat const &bureaucrat)
 {
