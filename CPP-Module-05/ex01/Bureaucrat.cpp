@@ -76,29 +76,30 @@ void	Bureaucrat::signForm(Form &form)
 {
 	if (form.getSigned())
 	{
-		std::cout << "(!) Bureaucrat " << _name << " couldn't sign Form " << form.getName() << " because it's already signed.\n";
+		std::cout << "(!) ERROR: Form already signed. Bureaucrat " << _name << " couldn't sign Form " << form.getName() << std::endl;
 		return;
 	}
 	try
 	{
 		form.beSigned(*this);
+		std::cout << "* Bureaucrat " << _name << " successfully signed Form " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "(!) Bureaucrat " << _name << " couldn't sign Form " << form.getName() << " because ";
-		std::cout << e.what() << '\n';
+		std::cout << "(!) ERROR: " << e.what();
+		std::cout << " Bureaucrat " << _name << " couldn't sign Form " << form.getName() << std::endl;
 	}
 	
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("! ERROR: Bureaucrat grade cannot go higher than grade 1");
+	return ("Bureaucrat grade cannot be higher than 1.");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("! ERROR: Bureaucrat grade cannot go lower than grade 150");
+	return ("Bureaucrat grade cannot be lower than 150.");
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src)
