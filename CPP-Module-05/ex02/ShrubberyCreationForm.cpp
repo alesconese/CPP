@@ -67,6 +67,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 			ofs << "         |||||                    |||||                    |||||                    |||||" << std::endl;
 			ofs << "......../|||||\\................../|||||\\................../|||||\\................../|||||\\........" << std::endl;
 			ofs.close();
+			std::cout << "* Successfully created " << _target << "_shrubbery" << std::endl;
 		}
 	}
 }
