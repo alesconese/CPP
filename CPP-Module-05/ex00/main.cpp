@@ -22,7 +22,7 @@ int	main()
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "(!) ERROR: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -33,7 +33,7 @@ int	main()
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "(!) ERROR: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -41,7 +41,7 @@ int	main()
 		try
 		{
 			Bureaucrat b1("Jim", 5);
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				b1.incrementGrade();
 				std::cout << b1 << std::endl;
@@ -49,7 +49,7 @@ int	main()
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "(!) ERROR: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -57,7 +57,7 @@ int	main()
 		try
 		{
 			Bureaucrat b1("Bill", 146);
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				b1.decrementGrade();
 				std::cout << b1 << std::endl;
@@ -65,7 +65,7 @@ int	main()
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "(!) ERROR: " << e.what() << std::endl;
 		}
 	}
 	{
@@ -83,7 +83,7 @@ int	main()
 		}
 		catch (std::exception &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "(!) ERROR: " << e.what() << std::endl;
 		}
 	}
 }
