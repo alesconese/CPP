@@ -58,7 +58,7 @@ int	main()
 		try
 		{
 			Form f1("1A", 10, 10);
-			Bureaucrat b1("Bob", 150);
+			Bureaucrat b1("Mike", 150);
 
 			std::cout << f1 << std::endl;
 			b1.signForm(f1);
@@ -73,12 +73,12 @@ int	main()
 		try
 		{
 			Form f1("1A", 10, 10);
-			Bureaucrat b1("Bob", 5);
-			Bureaucrat b2("Joe", 10);
+			Bureaucrat b2("Bob", 5);
+			Bureaucrat b3("Jim", 10);
 
 			std::cout << f1 << std::endl;
-			b1.signForm(f1);
 			b2.signForm(f1);
+			b3.signForm(f1);
 		}
 		catch (std::exception &e)
 		{
