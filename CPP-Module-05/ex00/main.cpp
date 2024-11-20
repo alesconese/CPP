@@ -29,7 +29,7 @@ int	main()
 		std::cout << "\n* * * * * TEST 2: Grade too low * * * * *" << std::endl;
 		try
 		{
-			Bureaucrat b1("Bob", 999);
+			Bureaucrat b2("Bob", 999);
 		}
 		catch (std::exception &e)
 		{
@@ -40,11 +40,11 @@ int	main()
 		std::cout << "\n* * * * * TEST 3: Increment too high * * * * *" << std::endl;
 		try
 		{
-			Bureaucrat b1("Jim", 5);
+			Bureaucrat b3("Jim", 5);
 			for (int i = 0; i < 10; i++)
 			{
-				b1.incrementGrade();
-				std::cout << b1 << std::endl;
+				b3.incrementGrade();
+				std::cout << b3 << std::endl;
 			}
 		}
 		catch (std::exception &e)
@@ -56,11 +56,11 @@ int	main()
 		std::cout << "\n* * * * * TEST 4: Decrement too low * * * * *" << std::endl;
 		try
 		{
-			Bureaucrat b1("Bill", 146);
+			Bureaucrat b4("Bill", 146);
 			for (int i = 0; i < 10; i++)
 			{
-				b1.decrementGrade();
-				std::cout << b1 << std::endl;
+				b4.decrementGrade();
+				std::cout << b4 << std::endl;
 			}
 		}
 		catch (std::exception &e)
@@ -72,13 +72,13 @@ int	main()
 		std::cout << "\n* * * * * TEST 5: grades OK * * * * *" << std::endl;
 		try
 		{
-			Bureaucrat b1("Joe", 99);
+			Bureaucrat b5("Joe", 99);
 			for (int i = 0; i < 5; i++)
 			{
-				b1.incrementGrade();
-				std::cout << b1 << std::endl;
-				b1.decrementGrade();
-				std::cout << b1 << std::endl;
+				b5.incrementGrade();
+				std::cout << b5 << std::endl;
+				b5.decrementGrade();
+				std::cout << b5 << std::endl;
 			}
 		}
 		catch (std::exception &e)
