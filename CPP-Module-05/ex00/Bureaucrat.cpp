@@ -14,7 +14,7 @@
 
 Bureaucrat::Bureaucrat(): _name("Undefined"), _grade(150)
 {
-	std::cout << "* Bureucrat default constructor called" << std::endl;
+	std::cout << "* Bureaucrat default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string const &name, int const &grade): _name(name)

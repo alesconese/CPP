@@ -29,7 +29,7 @@ class AForm
 	public:
 			AForm();
 			AForm(std::string name, unsigned int sign_grade, unsigned int exec_grade);
-			~AForm();
+			virtual ~AForm();
 			AForm(AForm const &src);
 			AForm &operator=(AForm const &src);
 

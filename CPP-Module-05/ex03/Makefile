@@ -10,10 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= forms
+NAME		= intern
 
-SRCS		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-INC			= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+SRCS		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+INC			= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp \
+			RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 
 CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
