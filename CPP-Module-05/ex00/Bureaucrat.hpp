@@ -6,11 +6,10 @@
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:19:00 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/11/07 19:19:02 by ade-tole         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:41:32 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 

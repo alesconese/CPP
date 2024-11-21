@@ -14,6 +14,8 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include <string>
+# include <cstdlib>
+# include <ctime>
 # include <unistd.h>
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"

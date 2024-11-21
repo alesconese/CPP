@@ -6,7 +6,7 @@
 /*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:19:09 by ade-tole          #+#    #+#             */
-/*   Updated: 2024/11/07 19:19:11 by ade-tole         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:41:18 by ade-tole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	main()
 	}
 	{
 		std::cout << "\n* * * * * TEST 3: Increment too high * * * * *" << std::endl;
+		Bureaucrat b3("Jim", 5);
 		try
 		{
-			Bureaucrat b3("Jim", 5);
 			for (int i = 0; i < 10; i++)
 			{
 				b3.incrementGrade();
@@ -54,9 +54,9 @@ int	main()
 	}
 	{
 		std::cout << "\n* * * * * TEST 4: Decrement too low * * * * *" << std::endl;
+		Bureaucrat b4("Bill", 146);
 		try
 		{
-			Bureaucrat b4("Bill", 146);
 			for (int i = 0; i < 10; i++)
 			{
 				b4.decrementGrade();
