@@ -22,6 +22,8 @@ class ScalarConverter
 	private:
 			ScalarConverter();
 			~ScalarConverter();
+			ScalarConverter(ScalarConverter const &src);
+			ScalarConverter &operator=(ScalarConverter const &src);
 
 	public:
 			static void	convert(std::string input);
