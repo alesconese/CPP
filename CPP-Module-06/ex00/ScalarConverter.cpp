@@ -37,38 +37,70 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
 
 void	convertSpecial(std::string input) //done
 {
-	(void)input;
 	std::cout << "Input is special.\n";
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	if (input.find("inf") != std::string::npos)
+	{
+		std::cout << "float: " << input[0] << "inff" << std::endl;
+		std::cout << "double: " << input[0] << "inf" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << "nanf" << std::endl;
+		std::cout << "double: " << "nan" << std::endl;
+	}
 }
 
 void	convertChar(std::string input) //done
 {
-	(void)input;
 	std::cout << "Input is char.\n";
+	if (!isprint(input[0]))
+		std::cout << "(!) Non-displayable characters not supported." << std::endl;
+	else
+	{
+		std::cout << "char: '" << input[0] << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(input[0]) << std::endl;
+		std::cout << "float: " << static_cast<float>(input[0]) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>(input[0]) << ".0" << std::endl;
+	}
 }
 
-void	convertInt(std::string input)
+void	convertNumbers(std::string input)
 {
-	(void)input;
-	std::cout << "Input is int.\n";
-}
+	long double	input_ld = std::strtold(input.c_str(), NULL);
 
-void	convertFloat(std::string input)
-{
-	(void)input;
-	std::cout << "Input is float.\n";
-}
+	if (input_ld > std::numeric_limits<char>::max() || \
+		input_ld < std::numeric_limits<char>::min())
+		std::cout << "char: overflow" << std::endl;
+	else if (!isprint(static_cast<char>(input_ld)))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(input_ld) << "'" << std::endl;
 
-void	convertDouble(std::string input)
-{
-	(void)input;
-	std::cout << "Input is double.\n";
+	if (input_ld > std::numeric_limits<int>::max() || input_ld < std::numeric_limits<int>::min())
+		std::cout << "int: overflow" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(input_ld) << std::endl;
+
+	if (input_ld > std::numeric_limits<float>::max() || input_ld < -std::numeric_limits<float>::max())
+		std::cout << "float: overflow" << std::endl;
+	else if (std::floor(static_cast<float>(input_ld)) == static_cast<float>(input_ld) && input_ld < 1000000)
+		std::cout << "float: " << static_cast<float>(input_ld) << ".0f" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(input_ld) << "f" << std::endl;
+	
+	if (input_ld > std::numeric_limits<double>::max() || input_ld < -std::numeric_limits<double>::max())
+		std::cout << "double: overflow" << std::endl;
+	else if (std::floor(static_cast<double>(input_ld)) == static_cast<double>(input_ld) && input_ld < 1000000)
+		std::cout << "double: " << static_cast<double>(input_ld) << ".0" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(input_ld) << std::endl;	
 }
 
 void	checkNumbers(std::string input)
 {
 	bool	dot = false;
-	bool	f = false;
 	bool	error = false;
 
 	for (std::string::iterator it = input.begin(); it != input.end(); it++)
@@ -78,10 +110,7 @@ void	checkNumbers(std::string input)
 			if (it == input.begin() && *it == '-')
 				continue;
 			else if (it == input.end()-1 && *it == 'f')
-			{
-				f = true;
-				//continue;
-			}
+				continue;
 			else if (it != input.begin() && it != input.end()-1 && *it == '.' && isdigit(*(it+1)))
 			{
 				if (!dot)
@@ -93,48 +122,18 @@ void	checkNumbers(std::string input)
 				error = true;
 		}
 	}
-
 	if (error)
 		std::cout << "(!) Wrong argument!\n";
-	else if (f)
-		convertFloat(input);
-	else if (dot)
-		convertDouble(input);
 	else
-		convertInt(input);
+		convertNumbers(input);
 }
 
 void	ScalarConverter::convert(std::string input)
 {
-	if (input == "-inff" || input == "+inff" || input == "-inf" || input == "+inf" || input == "nan")
+	if (input == "-inff" || input == "+inff" || input == "nanf" || input == "-inf" || input == "+inf" || input == "nan")
 		convertSpecial(input);
 	else if (input.size() == 1 && !isdigit(input[0]))
 		convertChar(input);
 	else
 		checkNumbers(input);
-	
-	/* char	char_v = 0;
-	int 	int_v = 0;
-	float	float_v = 0;
-	double	double_v = 0;
-
-	if (input == "")
-	if (input.size() == 1 && !isdigit(input[0]))
-	{
-		if (!isprint(input[0]))
-			std::cout << "(!) Non-displayable characters not supported." << std::endl;
-		std::cout << "Input is char.\n";
-		char_v = input[0];
-		int_v = static_cast<int>(char_v);
-		float_v = static_cast<float>(input[0]);
-		double_v = static_cast<double>(char_v);
-	}
-
-	else if ()
-
-
-	std::cout << "char: '" << char_v << "'" << std::endl;
-	std::cout << "int: " << int_v << std::endl;
-	std::cout << "float: " << float_v << "f" << std::endl;
-	std::cout << "double: " << double_v << std::endl; */
 }
