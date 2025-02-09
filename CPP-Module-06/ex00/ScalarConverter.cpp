@@ -35,9 +35,8 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
 	return *this;
 }
 
-void	convertSpecial(std::string input) //done
+void	convertSpecial(std::string input)
 {
-	std::cout << "Input is special.\n";
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 	if (input.find("inf") != std::string::npos)
@@ -52,9 +51,8 @@ void	convertSpecial(std::string input) //done
 	}
 }
 
-void	convertChar(std::string input) //done
+void	convertChar(std::string input)
 {
-	std::cout << "Input is char.\n";
 	if (!isprint(input[0]))
 		std::cout << "(!) Non-displayable characters not supported." << std::endl;
 	else
