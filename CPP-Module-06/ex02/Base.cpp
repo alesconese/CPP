@@ -33,7 +33,7 @@ Base	*generate(void)
 
 void	identify(Base *p)
 {
-	if (p == nullptr)
+	if (p == NULL)
 		std::cout << "* Pointer is NULL" << std::endl;
 	else if (dynamic_cast<A *>(p))
 		std::cout << "* Pointer is A" << std::endl;
@@ -53,20 +53,20 @@ void	identify(Base &p)
 		std::cout << "* Reference is A" << std::endl;
 		return;
 	}
-	catch (const std::bad_cast&) { }
+	catch (const std::exception &e) { }
 	try 
 	{
 		(void)dynamic_cast<B &>(p);
 		std::cout << "* Reference is B" << std::endl;
 		return;
 	}
-	catch (const std::bad_cast&) { }
+	catch (const std::exception &e) { }
 	try 
 	{
 		(void)dynamic_cast<C &>(p);
 		std::cout << "* Reference is C" << std::endl;
 		return;
 	}
-	catch (const std::bad_cast&) { }
+	catch (const std::exception &e) { }
 	std::cout << "(!) ERROR: Unexpected reference type" << std::endl;
 }

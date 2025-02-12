@@ -7,7 +7,7 @@ int main()
 {
 	{
 		std::cout << "* * * * * TEST 1: Passing nullptr * * * * *" << std::endl;
-		Base	*b1 = nullptr;
+		Base	*b1 = NULL;
 
 		identify(b1);
 	}

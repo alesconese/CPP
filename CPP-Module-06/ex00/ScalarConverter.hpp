@@ -17,6 +17,8 @@
 # include <string>
 # include <iostream>
 # include <limits>
+# include <cmath>
+# include <cstdlib>
 
 class ScalarConverter
 {
