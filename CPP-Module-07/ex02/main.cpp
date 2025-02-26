@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ade-tole <ade-tole@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 17:36:17 by ade-tole          #+#    #+#             */
+/*   Updated: 2025/02/26 17:36:19 by ade-tole         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
-#include <Array.hpp>
+#include <cstdlib>
+#include <ctime>
+#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
