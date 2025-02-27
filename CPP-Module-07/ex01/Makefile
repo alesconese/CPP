@@ -16,7 +16,7 @@ SRCS		= main.cpp
 INC			= Iter.hpp
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g -pedantic -fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)
