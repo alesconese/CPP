@@ -56,14 +56,25 @@ int		Span::shortestSpan()
 {
 	if (_numbers.size() < 2)
 		throw NoSpanException();
+	
 	std::sort(_numbers.begin(), _numbers.end());
+
+	int	shortest = std::numeric_limits<int>::max();
+	for (size_t i = 0; i < _numbers.size() - 1; i++)
+	{
+		if (shortest > _numbers[i + 1] - _numbers[i])
+			shortest = _numbers[i + 1] - _numbers[i];
+	}
+
+	return shortest;
 }
 
 int		Span::longestSpan()
 {
 	if (_numbers.size() < 2)
 		throw NoSpanException();
-	std::sort(_numbers.begin(), _numbers.end());
+
+	return (*std::max_element(_numbers.begin(), _numbers.end()) - *std::min_element(_numbers.begin(), _numbers.end()));
 }
 
 const char *Span::MaxCapacityException::what() const throw()
