@@ -28,18 +28,18 @@ int	main()
 		std::cout << "* Longest Span: " << sp.longestSpan() << std::endl;
 	}
 	{
-		std::cout << "/n/n* * * * * TEST 2: EXCEPTIONS * * * * *" << std::endl;
-		Span	sp = Span(1);
+		std::cout << "\n\n* * * * * TEST 2: ADDING MANY NUMBERS * * * * *" << std::endl;
+		Span	sp = Span(20000);
 
-		try
-		{
-			sp.addNumber(6);
-			sp.addNumber(3);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << "(!) ERROR: " << e.what() << '\n';
-		}
+		sp.addMany(10000);
+		sp.addMany(10000);
+
+		std::cout << "* Shortest Span: " << sp.shortestSpan() << std::endl;
+		std::cout << "* Longest Span: " << sp.longestSpan() << std::endl;
+	}
+	{
+		std::cout << "\n\n* * * * * TEST 3: EXCEPTIONS * * * * *" << std::endl;
+		Span	sp = Span(5);
 		
 		try
 		{
@@ -52,7 +52,30 @@ int	main()
 
 		try
 		{
-			std::cout << "* Shortest Span: " << sp.shortestSpan() << std::endl;
+			std::cout << "* Longest Span: " << sp.longestSpan() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "(!) ERROR: " << e.what() << '\n';
+		}
+
+		try
+		{
+			sp.addMany(10);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "(!) ERROR: " << e.what() << '\n';
+		}
+
+		try
+		{
+			sp.addNumber(6);
+			sp.addNumber(3);
+			sp.addNumber(17);
+			sp.addNumber(9);
+			sp.addNumber(11);
+			sp.addNumber(42);
 		}
 		catch(const std::exception& e)
 		{

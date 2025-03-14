@@ -17,6 +17,8 @@
 # include <vector>
 # include <algorithm>
 # include <limits>
+# include <cstdlib>
+# include <ctime>
 
 class	Span
 {
@@ -32,6 +34,7 @@ class	Span
 			Span &operator=(Span const &src);
 
 			void	addNumber(int num);
+			void	addMany(unsigned int amount);
 			int		shortestSpan();
 			int		longestSpan();
 

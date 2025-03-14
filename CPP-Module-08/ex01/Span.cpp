@@ -12,6 +12,17 @@
 
 #include "Span.hpp"
 
+struct RandomGenerator
+{
+	int	_max;
+	RandomGenerator(int max) : _max(max) {}
+
+	int	operator()() const
+	{
+		return std::rand() % _max;
+	}
+};
+
 Span::Span(): _N(0)
 {
 	std::cout << "* Span default constructor called. Capacity: 0" << std::endl;
@@ -50,6 +61,26 @@ void	Span::addNumber(int num)
 		throw MaxCapacityException();
 	_numbers.push_back(num);
 	std::cout << "* Number added to container: " << num << std::endl;
+}
+
+void	Span::addMany(unsigned int amount)
+{
+	unsigned int	prev = _numbers.size();
+
+	if (prev + amount > _N)
+		throw MaxCapacityException();
+
+	static bool seeded = false;
+	if (!seeded)
+	{
+		std::srand(std::time(0));
+		seeded = true;
+	}
+
+	_numbers.resize(prev + amount);
+	std::generate_n(_numbers.begin() + prev, amount, RandomGenerator(amount * 10));
+
+	std::cout << "* Added " << amount << " numbers to container." << std::endl;
 }
 
 int		Span::shortestSpan()
