@@ -56,6 +56,7 @@ template <class T> Array<T> &Array<T>::operator=(Array const &src)
 
 template <class T> unsigned int	Array<T>::Size(void) { return _size; }
 
+//needs to be accessible for read but not write on const instances. fix???
 template <class T> T	&Array<T>::operator[](unsigned int index)
 {
 	if (index >= _size)
