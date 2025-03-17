@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	//EDGE CASE: 	correct header but not even 1 correct line -> return without
 	//				constructing exchange object.
 
-	BitcoinExchange	exchange;
+	BitcoinExchange	exchange; //try catch if data.csv not loaded?
 
 	while (std::getline(ifs, line))
 		std::cout << "line found: " << line << std::endl;
