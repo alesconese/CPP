@@ -15,8 +15,8 @@
 
 # include <iostream>
 
-template	<typename T>
-void	iter(T *arr, unsigned int len, void(*func)(T&))
+template	<typename T, typename F>
+void	iter(T *arr, unsigned int len, F func)
 {
 	for (unsigned int i = 0; i < len; i++)
 		func(arr[i]);

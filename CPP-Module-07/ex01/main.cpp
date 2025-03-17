@@ -25,6 +25,28 @@ void	ft_changeCase(char &c)
 		c -= 32;
 }
 
+class A
+{
+  public:
+    A( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, A const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
+
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
+}
+
 int	main()
 {
 	{
@@ -56,6 +78,13 @@ int	main()
 
 		std::cout << "* Modified: " << carr << std::endl;
 	}
+	{
+		std::cout << std::endl << "* * * * * TEST 3: INT ARRAY INSIDE CLASS, FUNC TEMPLATE * * * * *" << std::endl;
+		int tab[] = { 0, 1, 2, 3, 4 };
+		A tab2[5];
 
+		iter( tab, 5, print<const int> );
+		iter( tab2, 5, print<A> );
+	}
 	return 0;
 }
