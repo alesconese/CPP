@@ -14,14 +14,14 @@
 
 template <class T> Array<T>::Array()
 {
-	std::cout << "* Array default constructor called" << std::endl;
+	std::cout << "* Array default constructor called." << std::endl;
 	_size = 0;
 	_arr = new T[0];
 }
 
 template <class T> Array<T>::Array(unsigned int n) : _size(n)
 {
-	std::cout << "* Array constructor called" << std::endl;
+	std::cout << "* Array constructor called." << std::endl;
 	_arr = new T[n];
 }
 
@@ -57,6 +57,13 @@ template <class T> Array<T> &Array<T>::operator=(Array const &src)
 template <class T> unsigned int	Array<T>::Size(void) { return _size; }
 
 //needs to be accessible for read but not write on const instances. fix???
+template <class T> T const	&Array<T>::operator[](unsigned int index) const
+{
+	if (index >= _size)
+		throw OutOfBoundsException();
+	return _arr[index];
+}
+
 template <class T> T	&Array<T>::operator[](unsigned int index)
 {
 	if (index >= _size)

@@ -47,7 +47,7 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "(!) ERROR: " << e.what() << '\n';
     }
     try
     {
@@ -55,7 +55,7 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "(!) ERROR: " << e.what() << '\n';
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -63,5 +63,19 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;//
+
+	Array<int>	a1(5);
+	a1[0] = 42;
+	std::cout << a1[0] << std::endl;
+
+	Array<int> const a2(a1);
+	Array<int> const a3 = a1;
+
+	//a2[0] = 33;
+	//a3[0] = 33;
+
+	std::cout << a2[0] << std::endl;
+	std::cout << a3[0] << std::endl;
+
     return 0;
 }

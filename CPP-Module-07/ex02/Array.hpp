@@ -28,7 +28,8 @@ class Array
 			Array &operator=(Array const &src);
 
 			unsigned int Size(void);
-			T	&operator[](unsigned int index);
+			T &operator[](unsigned int index);
+			T const	&operator[](unsigned int index) const;
 
 			class OutOfBoundsException : public std::exception
 			{
