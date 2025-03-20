@@ -16,7 +16,7 @@ SRCS		= main.cpp BitcoinExchange.cpp
 INC			= BitcoinExchange.hpp
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -gdwarf-4 -pedantic #-fsanitize=leak
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 #-gdwarf-4 -pedantic #-fsanitize=leak
 RM			= rm -f
 
 OBJS		= $(SRCS:.cpp=.o)

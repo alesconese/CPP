@@ -19,8 +19,8 @@ class	BitcoinExchange
 			BitcoinExchange(BitcoinExchange const &src);
 			BitcoinExchange	&operator=(BitcoinExchange const &src);
 
-			float	getValue(std::string const &date) const;
-			bool	checkValidDate(const tm &tm) const;
+			float	getValue(std::string const &date);
+			bool	checkValidDate(const tm &tm);
 };
 
 #endif

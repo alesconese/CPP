@@ -34,24 +34,16 @@ void	BitcoinExchange::loadData()
 
 	data_file.open("data.csv");
 	if (data_file.fail())
-	{
-		std::cout << "(!) ERROR: Unable to open data file.\n";
-		return;
-	}
+		throw std::runtime_error("unable to open data file.");
 
 	std::getline(data_file, date);
 	if (date != "date,exchange_rate")
-	{
-		std::cout << "(!) ERROR: Invalid data file format.\n";
-		return ;
-	}
+		throw std::runtime_error("invalid data file format.");
 	
 	while (std::getline(data_file, date))
 	{
 		value = date.substr(date.find(',') + 1);
 		date = date.substr(0, date.find(','));
-
-		//debug
 		//std::cout << "[read] date: " << date << " value: " << value << std::endl;
 
 		//verify correct date and value format.
@@ -60,7 +52,7 @@ void	BitcoinExchange::loadData()
 	data_file.close();
 }
 
-bool	BitcoinExchange::checkValidDate(const tm &tm) const
+bool	BitcoinExchange::checkValidDate(const tm &tm)
 {
 	switch (tm.tm_mon)
 	{
@@ -78,7 +70,8 @@ bool	BitcoinExchange::checkValidDate(const tm &tm) const
 		case 10:
 			return (tm.tm_mday <= 30);
 		case 1:
-			if (tm.tm_year % 4 == 0 && (tm.tm_year % 100 != 0 || tm.tm_year % 400 == 0))
+			if (((tm.tm_year + 1900) % 4 == 0 && (tm.tm_year + 1900) % 100 != 0) \
+				|| (tm.tm_year + 1900) % 400 == 0)
 				return (tm.tm_mday <= 29);
 			else
 				return (tm.tm_mday <= 28);
@@ -87,14 +80,19 @@ bool	BitcoinExchange::checkValidDate(const tm &tm) const
 	}
 }
 
-float	BitcoinExchange::getValue(std::string const &date) const
+float	BitcoinExchange::getValue(std::string const &date)
 {
-	std::map<std::string, float>::const_iterator	it;
+	if (date < _historic.begin()->first)
+		return (0);
+
+	std::map<std::string, float>::iterator	it;
 
 	it = _historic.find(date);
 	if (it == _historic.end())
 	{
-		throw std::runtime_error("Invalid date.");
+		it = _historic.lower_bound(date);
+		it--;
 	}
+	std::cout << it->first << std::endl;
 	return (it->second);
 }
