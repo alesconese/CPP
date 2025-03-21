@@ -23,38 +23,19 @@ int	main(int argc, char **argv)
 
 		while (std::getline(ifs, line))
 		{
-			//std::cout << "line: " << line << std::endl;
 			try
 			{
-				//1: check format == date | value
-				if (line.find(" | ") == std::string::npos)
-					throw std::invalid_argument("bad input => " + line);
-
-				std::string	date_str = line.substr(0, line.find(" | "));
-				std::string	btc_str = line.substr(line.find(" | ") + 3);
-				if (date_str.empty() || btc_str.empty())
-					throw std::invalid_argument("bad input => " + line);
-
-				//2: check date format == yyyy-mm-dd
-				struct tm	tm;
-				if (!strptime(date_str.c_str(), "%Y-%m-%d", &tm) || !exchange.checkValidDate(tm))
-					throw std::invalid_argument("invalid date => " + date_str);
-
-				//3: check value == number && 0 <= value <= 1000
-				char	*endptr;
-				float	btc = std::strtof(btc_str.c_str(), &endptr);
-				if (*endptr != '\0')
-					throw std::invalid_argument("bad input => " + line);
+				std::string	date;
+				float		btc;
+				exchange.verifyData(line, date, btc, " | ");
 				if (btc < 0)
 					throw std::invalid_argument("not a positive number");
 				if (btc > 1000)
 					throw std::invalid_argument("too large a number");
-				
-				//4: get total value
-				float	value = btc * exchange.getValue(date_str);
 
-				//5: print result
-				std::cout << date_str << " => " << btc << " = " << value << std::endl;
+				float	value = btc * exchange.getValue(date);
+
+				std::cout << date << " => " << btc << " = " << value << std::endl;
 			}
 			catch(const std::exception& e)
 			{

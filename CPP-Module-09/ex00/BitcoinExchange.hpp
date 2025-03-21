@@ -21,6 +21,7 @@ class	BitcoinExchange
 
 			float	getValue(std::string const &date);
 			bool	checkValidDate(const tm &tm);
+			void	verifyData(std::string line, std::string &date, float &btc, std::string const &separator);
 };
 
 #endif

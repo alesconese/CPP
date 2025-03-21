@@ -29,25 +29,29 @@ BitcoinExchange	&BitcoinExchange::operator=(BitcoinExchange const &src)
 void	BitcoinExchange::loadData()
 {
 	std::ifstream	data_file;
-	std::string		date;
-	std::string		value;
+	std::string		line;
 
 	data_file.open("data.csv");
 	if (data_file.fail())
 		throw std::runtime_error("unable to open data file.");
 
-	std::getline(data_file, date);
-	if (date != "date,exchange_rate")
+	std::getline(data_file, line);
+	if (line != "date,exchange_rate")
 		throw std::runtime_error("invalid data file format.");
-	
-	while (std::getline(data_file, date))
+	try
 	{
-		value = date.substr(date.find(',') + 1);
-		date = date.substr(0, date.find(','));
-		//std::cout << "[read] date: " << date << " value: " << value << std::endl;
+		while (std::getline(data_file, line))
+		{
+			std::string	date;
+			float		value;
+			this->verifyData(line, date, value, ",");
 
-		//verify correct date and value format.
-		_historic[date] = std::atof(value.c_str());
+			_historic[date] = value;
+		}
+	}
+	catch(const std::exception &e)
+	{
+		throw std::runtime_error("corrupt data.csv");
 	}
 	data_file.close();
 }
@@ -83,7 +87,7 @@ bool	BitcoinExchange::checkValidDate(const tm &tm)
 float	BitcoinExchange::getValue(std::string const &date)
 {
 	if (date < _historic.begin()->first)
-		return (0);
+		throw std::invalid_argument("date older than available data");
 
 	std::map<std::string, float>::iterator	it;
 
@@ -93,6 +97,26 @@ float	BitcoinExchange::getValue(std::string const &date)
 		it = _historic.lower_bound(date);
 		it--;
 	}
-	std::cout << it->first << std::endl;
+
 	return (it->second);
+}
+
+void	BitcoinExchange::verifyData(std::string line, std::string &date, float &btc, std::string const &separator)
+{
+	if (line.find(separator) == std::string::npos)
+		throw std::invalid_argument("bad input => " + line);
+
+	date = line.substr(0, line.find(separator));
+	std::string	btc_str = line.substr(line.find(separator) + separator.length());
+	if (date.empty() || btc_str.empty())
+		throw std::invalid_argument("bad input => " + line);
+
+	struct tm	tm;
+	if (!strptime(date.c_str(), "%Y-%m-%d", &tm) || !this->checkValidDate(tm))
+		throw std::invalid_argument("invalid date => " + date);
+
+	char	*endptr;
+	btc = std::strtof(btc_str.c_str(), &endptr);
+	if (*endptr != '\0')
+		throw std::invalid_argument("bad input => " + line);
 }
