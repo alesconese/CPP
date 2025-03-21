@@ -51,14 +51,14 @@ int	main(int argc, char **argv)
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << "(!) ERROR: " << e.what() << '\n';
+				std::cout << "(!) ERROR: " << e.what() << std::endl;
 			}
 		}
 		ifs.close();
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "(!) ERROR: " << e.what() << '\n';
+		std::cout << "(!) ERROR: " << e.what() << std::endl;
 	}
 
 	return 0;
