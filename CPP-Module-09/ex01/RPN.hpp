@@ -15,14 +15,16 @@
 
 # include <iostream>
 # include <stack>
+# include <sstream>
 
 class RPN
 {
 	private:
-			std::stack<char>	_tokens;
+			std::stack<float>	_operands;
 
 			RPN();
-			void	loadInput(std::string input);
+			void	isValidInput(std::string input);
+			float	getResult(std::string input);
 
 	public:
 			RPN(std::string input);
