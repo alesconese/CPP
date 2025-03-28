@@ -63,14 +63,14 @@ float	RPN::getResult(std::string input)
 		if (token.length() != 1)
 		{
 			if (token[0] == '-' && isdigit(token[1]) && token.length() == 2)
-				_operands.push(std::atof(token.c_str()));
+				_operands.push(std::strtof(token.c_str(), NULL));
 			else if (token.find_first_not_of("0123456789") == std::string::npos)
 				throw std::invalid_argument("operands must be single-digit numbers");
 			else
 				throw std::invalid_argument("operands and operators must be separated by a space");
 		}
 		else if (isdigit(token[0]))
-			_operands.push(std::atof(token.c_str()));
+			_operands.push(std::strtof(token.c_str(), NULL));
 		else if (token.find_first_of("+-*/") != std::string::npos)
 		{
 			if (_operands.size() < 2)
