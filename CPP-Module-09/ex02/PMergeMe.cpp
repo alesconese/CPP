@@ -43,5 +43,32 @@ void	PMergeMe::FJ(char **argv)
 
 void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 {
+	static int	rec_lvl = 1;//debug. delete
+	static int	cmp_size = 1;
+	
+	std::cout << "* Recursion level " << rec_lvl << ":\n";
+	if (og_vec.size() / cmp_size < 2)
+	{
+		std::cout << "NOTHING TO BE DONE\n\n";//debug
+		return ;
+	}
+
+	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it += cmp_size * 2)
+	{
+		if (*(it + (cmp_size - 1)) > *(it + cmp_size * 2 - 1))
+			for (std::vector<int>::iterator it2 = it; it2 < it + cmp_size; it2++)
+				std::iter_swap(it2, it2 + cmp_size);
+	}
+	//debug
+	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
+		std::cout << *it << " ";
+	std::cout << "\n\n";
+
+	rec_lvl++;
+	cmp_size *= 2;
+	FJ_vec(og_vec);
+
+
+	
 
 }
