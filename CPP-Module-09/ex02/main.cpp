@@ -46,44 +46,7 @@ void	ft_insert(std::vector<int> &og_seq)
 	std::vector<int>::iterator	b_last;
 	std::vector<int>::iterator	a_first;
 
-
-	std::cout << "* * * INSERTION * * *\n";
-	//recursion level 4
-	//nothing to do?
-	std::cout << "* Recursion level 4 (elements of 8 numbers):\n";
-	std::cout << "NOTHING TO BE DONE\n\n";
-
-	//recursion level 3 (elements of 4 numbers)
-	std::cout << "* Recursion level 3 (elements of 4 numbers):\n";
-	std::cout << "BEFORE: ";
-	for (og_it = og_seq.begin(); og_it < og_seq.end(); og_it++)
-		std::cout << *og_it << " ";
-	std::cout << "\n";
 	cmp_size = 4;
-	//b1,a1..n >> main
-	//b2..n >> pend
-	main.insert(main.end(), og_seq.begin(), og_seq.begin() + cmp_size * 2);
-
-	for(og_it = og_seq.begin() + cmp_size * 2; og_it < og_seq.end(); og_it += cmp_size)
-	{
-		if (og_seq.end() - og_it < cmp_size)
-			extra.insert(extra.end(), og_it, og_seq.end());
-		else if ((og_it - og_seq.begin()) % (cmp_size * 2) == 0)
-			pend.insert(pend.end(), og_it, og_it + cmp_size);//bn >> pend
-		else
-			main.insert(main.end(), og_it, og_it + cmp_size);//an >> main
-	}
-	
-	std::cout << "MAIN: ";
-	for (std::vector<int>::iterator it = main.begin(); it < main.end(); it++)
-		std::cout << *it << " ";
-	std::cout << "\nPEND: ";
-	for (std::vector<int>::iterator it = pend.begin(); it < pend.end(); it++)
-		std::cout << *it << " ";
-	std::cout << "\nEXTRA: ";
-	for (std::vector<int>::iterator it = extra.begin(); it < extra.end(); it++)
-		std::cout << *it << " ";
-	std::cout << "\n\n";
 	
 	//insert bs from pend to main, starting with jacobsthal 3 
 	jaco = 2;

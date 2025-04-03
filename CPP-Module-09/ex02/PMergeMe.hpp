@@ -18,6 +18,8 @@ class PMergeMe
 
 			static void	FJ_vec(std::vector<int> &og_vec);
 
+			static std::vector<int>::iterator	my_upper_bound(std::vector<int>::iterator first, std::vector<int>::iterator last, int value, int cmp_size);
+
 	public:
 			static void	FJ(char **argv);
 };
