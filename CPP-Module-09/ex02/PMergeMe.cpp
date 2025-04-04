@@ -41,6 +41,16 @@ void	PMergeMe::FJ(char **argv)
 	FJ_vec(og_vec);
 	clock_t	end = clock();
 
+	//debug. check if sorted
+	for (std::vector<int>::iterator it = og_vec.begin() + 1; it < og_vec.end(); it++)
+	{
+		if (*it < *(it - 1))
+		{
+			std::cout << "(!) ERROR: Sequence is not sorted.\n";
+			return ;
+		}
+	}
+
 	std::cout << "* Sorted sequence:\n";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
@@ -52,13 +62,13 @@ void	PMergeMe::FJ(char **argv)
 
 void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 {
-	//static int	rec_lvl = 1;//debug. delete
+	static int	rec_lvl = 1;//debug. delete
 	static int	cmp_size = 1;
 	
-	//std::cout << "* Recursion level " << rec_lvl << ":\n";
+	std::cout << "* Recursion level " << rec_lvl << ":\n";
 	if (og_vec.size() / cmp_size < 2)
 	{
-		//std::cout << "(!) not enough numbers to make a pair\n\n";//debug
+		std::cout << "(!) not enough numbers to make a pair\n\n";//debug
 		return ;
 	}
 
@@ -71,31 +81,31 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 				std::iter_swap(it2, it2 + cmp_size);
 	}
 	//debug
-	/* for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
+	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n\n"; */
+	std::cout << "\n\n";
 
-	//rec_lvl++; //debug. delete
+	rec_lvl++; //debug. delete
 	cmp_size *= 2;
 	FJ_vec(og_vec);
 	cmp_size /= 2;
-	//rec_lvl--; //debug. delete
+	rec_lvl--; //debug. delete
 
 	//merge insert with jacobsthal optimization
 	//start at last recursion level that was able to make a pair
 	//can have 2 or 3 pairs and may or may not have extra elements
 
-	//std::cout << "* Recursion level " << rec_lvl << ":\n";
+	std::cout << "* Recursion level " << rec_lvl << ":\n";
 	if (og_vec.size() / cmp_size < 2)
 	{
-		//std::cout << "(!) not enough numbers to make a pair\n\n";//debug
+		std::cout << "(!) not enough numbers to make a pair\n\n";//debug
 		return ;
 	}
 
-	/* std::cout << "BEFORE: ";
+	std::cout << "BEFORE: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n"; */
+	std::cout << "\n";
 
 	//initialize main with {b1,a1..an}, pend with {b2..bn}, extra with non-participating
 	std::vector<int>	main;
@@ -117,7 +127,7 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 			main.insert(main.end(), it, it + cmp_size);//an >> main
 	}
 
-	/* std::cout << "main: ";
+	std::cout << "main: ";
 	for (std::vector<int>::iterator it = main.begin(); it < main.end(); it++)
 		std::cout << *it << " ";
 	std::cout << "\npend: ";
@@ -126,44 +136,48 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 	std::cout << "\nextra: ";
 	for (std::vector<int>::iterator it = extra.begin(); it < extra.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n"; */
+	std::cout << "\n";
 	
 	//insertion from pend in reeverse order, using binary search
 	//needs jacobsthal optimization!!
 	while (!pend.empty())
 	{
-		//std::cout << "b_last: " << *(pend.end() - 1) << "\n";
+		std::cout << "b_last: " << *(pend.end() - 1) << "\n";
 		std::vector<int>::iterator	insert_pos = my_upper_bound(main.begin(), main.end(), *(pend.end() - 1), cmp_size);
-		//std::cout << "insert_pos: " << *insert_pos << "\n";
-		main.insert(insert_pos - (cmp_size - 1), pend.end() - cmp_size, pend.end());
+		if (insert_pos != main.end())
+			insert_pos -= (cmp_size - 1);
+		std::cout << "insert_pos: " << *insert_pos << "\n";
+		main.insert(insert_pos, pend.end() - cmp_size, pend.end());
 		pend.erase(pend.end() - cmp_size, pend.end());
 	}
 
 	og_vec = main;
 	og_vec.insert(og_vec.end(), extra.begin(), extra.end());
 	
-	/* std::cout << "AFTER: ";
+	std::cout << "AFTER: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n\n"; */
+	std::cout << "\n\n";
 }
 
 std::vector<int>::iterator	PMergeMe::my_upper_bound(std::vector<int>::iterator first, std::vector<int>::iterator last, int value, int cmp_size)
 {
-	// Start position is determined by cmp_size
-    first += (cmp_size - 1);
+	std::vector<int>::iterator low = first + (cmp_size - 1);
+	std::vector<int>::iterator high = last - 1;
 
-    ptrdiff_t low = 0, high = std::distance(first, last) / cmp_size;
+	if (value > *high)
+		return last; // Value is greater than the largest element
 
-    while (low < high) {
-        ptrdiff_t mid = low + (high - low) / 2;
-        std::vector<int>::iterator midIt = first + mid * cmp_size;
+	while (low < high)
+	{
+		std::vector<int>::iterator mid = low + ((std::distance(low, high) / cmp_size) / 2) * cmp_size; // 0
 
-        if (*midIt <= value)
-            low = mid + 1; // Continue searching in the upper half
-        else
-            high = mid; // Continue in the lower half
-    }
+		if (*mid < value)
+			low = mid + cmp_size; // Continue searching in the upper half
+		else
+			high = mid; // Continue in the lower half
+		
+	}
 
-    return first + low * cmp_size; // Return position of upper bound
+	return low; // Return position of upper bound
 }
