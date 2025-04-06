@@ -1,35 +1,7 @@
 #include "PMergeMe.hpp"
 
-int		get_Jacobsthal(int k)
-{
-	return((pow(2, k + 1) + pow(-1, k)) / 3);
-}
 
-std::vector<int>::iterator	my_upper_bound(std::vector<int>::iterator first, std::vector<int>::iterator last, int value, int cmp_size)
-{
-    // Start position is determined by cmp_size
-    first += (cmp_size - 1);
-
-    ptrdiff_t low = 0, high = std::distance(first, last) / cmp_size;
-	std::cout << "low: " << low << "\n";
-	std::cout << "high: " << high << "\n";
-
-    while (low < high) {
-        ptrdiff_t mid = low + (high - low) / 2;
-		std::cout << "mid: " << mid << "\n";
-        std::vector<int>::iterator midIt = first + mid * cmp_size;
-		std::cout << "midIt: " << *midIt << "\n";
-
-        if (*midIt <= value)
-            low = mid + 1; // Continue searching in the upper half
-        else
-            high = mid; // Continue in the lower half
-    }
-
-    return first + low * cmp_size; // Return position of upper bound
-}
-
-
+/*
 void	ft_insert(std::vector<int> &og_seq)
 {
 	std::vector<int>	main;
@@ -156,7 +128,7 @@ void	ft_insert(std::vector<int> &og_seq)
 		jaco++;
 	}
 	//after finishing jacobsthal 5 insertions there is 1 element left in pend -> segfault
-}
+}*/
 
 int	main(int argc, char **argv)
 {

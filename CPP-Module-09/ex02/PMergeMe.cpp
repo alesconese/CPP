@@ -62,13 +62,13 @@ void	PMergeMe::FJ(char **argv)
 
 void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 {
-	static int	rec_lvl = 1;//debug. delete
+	//static int	rec_lvl = 1;//debug. delete
 	static int	cmp_size = 1;
 	
-	std::cout << "* Recursion level " << rec_lvl << ":\n";
+	//std::cout << "* Recursion level " << rec_lvl << ":\n";
 	if (og_vec.size() / cmp_size < 2)
 	{
-		std::cout << "(!) not enough numbers to make a pair\n\n";//debug
+		//std::cout << "(!) not enough numbers to make a pair\n\n";//debug
 		return ;
 	}
 
@@ -81,31 +81,31 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 				std::iter_swap(it2, it2 + cmp_size);
 	}
 	//debug
-	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
+	/* for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n\n";
+	std::cout << "\n\n"; */
 
-	rec_lvl++; //debug. delete
+	//rec_lvl++; //debug. delete
 	cmp_size *= 2;
 	FJ_vec(og_vec);
 	cmp_size /= 2;
-	rec_lvl--; //debug. delete
+	//rec_lvl--; //debug. delete
 
 	//merge insert with jacobsthal optimization
 	//start at last recursion level that was able to make a pair
 	//can have 2 or 3 pairs and may or may not have extra elements
 
-	std::cout << "* Recursion level " << rec_lvl << ":\n";
+	//std::cout << "* Recursion level " << rec_lvl << ":\n";
 	if (og_vec.size() / cmp_size < 2)
 	{
-		std::cout << "(!) not enough numbers to make a pair\n\n";//debug
+		//std::cout << "(!) not enough numbers to make a pair\n\n";//debug
 		return ;
 	}
 
-	std::cout << "BEFORE: ";
+	/* std::cout << "BEFORE: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n";
+	std::cout << "\n"; */
 
 	//initialize main with {b1,a1..an}, pend with {b2..bn}, extra with non-participating
 	std::vector<int>	main;
@@ -127,7 +127,7 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 			main.insert(main.end(), it, it + cmp_size);//an >> main
 	}
 
-	std::cout << "main: ";
+	/* std::cout << "main: ";
 	for (std::vector<int>::iterator it = main.begin(); it < main.end(); it++)
 		std::cout << *it << " ";
 	std::cout << "\npend: ";
@@ -136,28 +136,57 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 	std::cout << "\nextra: ";
 	for (std::vector<int>::iterator it = extra.begin(); it < extra.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n";
+	std::cout << "\n"; */
 	
 	//insertion from pend in reeverse order, using binary search
 	//needs jacobsthal optimization!!
+	int jaco = 2; //start at 2nd jacobsthal nbr (3)
+
+	std::vector<int>::iterator	b_last;
+	std::vector<int>::iterator	a_first;
+	std::vector<int>::iterator	insert_pos;
+
+	size_t insertions;
+
 	while (!pend.empty())
 	{
-		std::cout << "b_last: " << *(pend.end() - 1) << "\n";
-		std::vector<int>::iterator	insert_pos = my_upper_bound(main.begin(), main.end(), *(pend.end() - 1), cmp_size);
-		if (insert_pos != main.end())
-			insert_pos -= (cmp_size - 1);
-		std::cout << "insert_pos: " << *insert_pos << "\n";
-		main.insert(insert_pos, pend.end() - cmp_size, pend.end());
-		pend.erase(pend.end() - cmp_size, pend.end());
+		//need jaco(n) - jaco(n-1) elements for jacobsthal optimization, otherwise insert in reverse order
+		insertions = get_Jacobsthal(jaco) - get_Jacobsthal(jaco - 1);
+		if (insertions * cmp_size > pend.size())
+			insertions = pend.size() / cmp_size;
+		//std::cout << "insertions: " << insertions << "\n";
+		while (insertions)
+		{
+			b_last = pend.begin() + insertions * cmp_size - 1;
+			//std::cout << "b_last: " << *b_last << "\n";
+
+			//a_first
+
+			insert_pos = my_upper_bound(main.begin(), main.end(), *b_last, cmp_size); //change main.end() to a_first
+			//std::cout << "insert_pos: " << *insert_pos << "\n";
+			if (insert_pos != main.end())
+				insert_pos -= (cmp_size - 1);
+			
+			main.insert(insert_pos, b_last - (cmp_size - 1), b_last + 1);
+			pend.erase(b_last - (cmp_size - 1), b_last + 1);
+
+			insertions--;
+		}
+		jaco++;
 	}
 
 	og_vec = main;
 	og_vec.insert(og_vec.end(), extra.begin(), extra.end());
 	
-	std::cout << "AFTER: ";
+	/* std::cout << "AFTER: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
-	std::cout << "\n\n";
+	std::cout << "\n\n"; */
+}
+
+int		PMergeMe::get_Jacobsthal(int k)
+{
+	return((pow(2, k + 1) + pow(-1, k)) / 3);
 }
 
 std::vector<int>::iterator	PMergeMe::my_upper_bound(std::vector<int>::iterator first, std::vector<int>::iterator last, int value, int cmp_size)
@@ -165,8 +194,9 @@ std::vector<int>::iterator	PMergeMe::my_upper_bound(std::vector<int>::iterator f
 	std::vector<int>::iterator low = first + (cmp_size - 1);
 	std::vector<int>::iterator high = last - 1;
 
+	//if value is higher than all numbers in the range, return last
 	if (value > *high)
-		return last; // Value is greater than the largest element
+		return last;
 
 	while (low < high)
 	{
@@ -176,7 +206,6 @@ std::vector<int>::iterator	PMergeMe::my_upper_bound(std::vector<int>::iterator f
 			low = mid + cmp_size; // Continue searching in the upper half
 		else
 			high = mid; // Continue in the lower half
-		
 	}
 
 	return low; // Return position of upper bound
