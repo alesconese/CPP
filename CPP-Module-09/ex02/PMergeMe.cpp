@@ -95,13 +95,15 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 	//start at last recursion level that was able to make a pair
 	//can have 2 or 3 pairs and may or may not have extra elements
 
-	//std::cout << "* Recursion level " << rec_lvl << ":\n";
+	//std::cout << "* Recursion level " << rec_lvl << ":\n";//debug
+	//std::cout << "cmp_size: " << cmp_size << "\n";//debug
 	if (og_vec.size() / cmp_size < 2)
 	{
 		//std::cout << "(!) not enough numbers to make a pair\n\n";//debug
 		return ;
 	}
 
+	//debug
 	/* std::cout << "BEFORE: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
@@ -127,6 +129,7 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 			main.insert(main.end(), it, it + cmp_size);//an >> main
 	}
 
+	//debug
 	/* std::cout << "main: ";
 	for (std::vector<int>::iterator it = main.begin(); it < main.end(); it++)
 		std::cout << *it << " ";
@@ -147,6 +150,7 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 	std::vector<int>::iterator	insert_pos;
 
 	size_t insertions;
+	int		offset = 0;
 
 	while (!pend.empty())
 	{
@@ -154,30 +158,44 @@ void	PMergeMe::FJ_vec(std::vector<int> &og_vec)
 		insertions = get_Jacobsthal(jaco) - get_Jacobsthal(jaco - 1);
 		if (insertions * cmp_size > pend.size())
 			insertions = pend.size() / cmp_size;
-		//std::cout << "insertions: " << insertions << "\n";
+		
+		//std::cout << "jacobsthal: " << get_Jacobsthal(jaco) << "\ninsertions: " << insertions << "\n";//debug
 		while (insertions)
 		{
 			b_last = pend.begin() + insertions * cmp_size - 1;
-			//std::cout << "b_last: " << *b_last << "\n";
+			//std::cout << "b_last: " << *b_last << "\n";//debug
 
-			//a_first
+			//second parameter of my_upper_bound should be ax (original pair corresponding to bx, the element we are inserting)
+			//if bx is an odd element (has no pair), we have to search in the entire main, so we pass main.end()
+			//the index of bx is the current jacobsthal decreased by each element inserted in the current jacobsthal
+			//since instertions is initialized as current - previous jacobsthal, here we use the previous and the insertions left
+			//when there aren't enough elements left for a full jacobsthal sequence, insertions dictates the last index
+			int	idx = get_Jacobsthal(jaco - 1) + insertions;
+			//std::cout << "index: " << idx << "\n";//debug
+			a_first = main.begin() + (cmp_size * (idx + offset));
+			//std::cout << "a_first: " << a_first - main.begin() << " (" << *a_first << ")\n";//debug
 
-			insert_pos = my_upper_bound(main.begin(), main.end(), *b_last, cmp_size); //change main.end() to a_first
-			//std::cout << "insert_pos: " << *insert_pos << "\n";
-			if (insert_pos != main.end())
+			insert_pos = my_upper_bound(main.begin(), a_first, *b_last, cmp_size); //change main.end() to a_first
+			if (insert_pos != a_first)
+			{
 				insert_pos -= (cmp_size - 1);
+				offset++;
+			}
+			//std::cout << "insert_pos: " << insert_pos - main.begin() << " (" << *insert_pos << ")\n";//debug
 			
 			main.insert(insert_pos, b_last - (cmp_size - 1), b_last + 1);
 			pend.erase(b_last - (cmp_size - 1), b_last + 1);
 
 			insertions--;
 		}
+		offset = get_Jacobsthal(jaco) - 1;
 		jaco++;
 	}
 
 	og_vec = main;
 	og_vec.insert(og_vec.end(), extra.begin(), extra.end());
 	
+	//debug
 	/* std::cout << "AFTER: ";
 	for (std::vector<int>::iterator it = og_vec.begin(); it < og_vec.end(); it++)
 		std::cout << *it << " ";
