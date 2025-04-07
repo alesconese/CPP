@@ -17,7 +17,7 @@
 
 template <typename T> int easyfind(T first, int second)
 {
-	typename T::iterator	it = find(first.begin(), first.end(), second);
+	typename T::iterator	it = std::find(first.begin(), first.end(), second);
 
 	if (it != first.end())
 		 return (std::distance(first.begin(), it));
