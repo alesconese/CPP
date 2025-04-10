@@ -7,6 +7,7 @@
 # include <algorithm>
 # include <climits>
 # include <cmath>
+# include <iomanip>
 
 class PMergeMe
 {
@@ -17,9 +18,12 @@ class PMergeMe
 			~PMergeMe();
 
 			static void	FJ_vec(std::vector<int> &og_vec);
+			static void FJ_deq(std::deque<int> &og_deq);
 
 			static int	get_Jacobsthal(int k);
-			static std::vector<int>::iterator	my_upper_bound(std::vector<int>::iterator first, std::vector<int>::iterator last, int value, int cmp_size);
+
+			template <typename C>
+			static  typename C::iterator	my_upper_bound(typename C::iterator first, typename C::iterator last, int value, int cmp_size);
 
 	public:
 			static void	FJ(char **argv);
