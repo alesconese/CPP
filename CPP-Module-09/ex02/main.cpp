@@ -7,6 +7,7 @@ int	main(int argc, char **argv)
 		std::cout << "(!) ERROR: Not enough arguments.\n";
 		return 1;
 	}
+	
 	try
 	{
 		PMergeMe::FJ(argv);
