@@ -98,8 +98,8 @@ bool	BitcoinExchange::checkValidDate(const tm &tm)
 
 float	BitcoinExchange::getValue(std::string const &date)
 {
-	if (date < _historic.begin()->first)
-		throw std::invalid_argument("date older than available data");
+	if (date < _historic.begin()->first || date > (--_historic.end())->first)
+		throw std::invalid_argument("date outside database range");
 
 	std::map<std::string, float>::iterator	it;
 
